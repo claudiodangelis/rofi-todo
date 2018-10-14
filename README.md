@@ -1,4 +1,4 @@
-# rofi-todos.sh
+# rofi-todo.sh
 
 Minimal todo client for the [rofi](https://github.com/DaveDavenport/rofi) launcher.
 
