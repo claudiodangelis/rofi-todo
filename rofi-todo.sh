@@ -5,23 +5,31 @@ if [[ ! -a "${TODO_FILE}" ]]; then
     touch "${TODO_FILE}"
 fi
 
-function list_todos() {
+function add_todo() {
+    echo -e "`date +"%B %d %H:%M"` $*" >> "${TODO_FILE}"
+}
+
+function remove_todo() {
+    sed -i "/^${*}$/d" "${TODO_FILE}"
+}
+
+function get_todos() {
     echo "$(cat "${TODO_FILE}")"
 }
 
 if [ -z "$@" ]; then
-    list_todos
+    get_todos
 else
     LINE=$(echo "${@}" | sed "s/\([^a-zA-Z0-9]\)/\\\\\\1/g")
     LINE_UNESCAPED=${@}
     if [[ $LINE_UNESCAPED == +* ]]; then
         LINE_UNESCAPED=$(echo $LINE_UNESCAPED | sed s/^+//g |sed s/^\s+//g )
-        echo -e "`date +"%B %d %H:%M"` ${LINE_UNESCAPED}" >> "${TODO_FILE}"
+        add_todo ${LINE_UNESCAPED}
     else
         MATCHING=$(grep "^${LINE_UNESCAPED}$" "${TODO_FILE}")
         if [[ -n "${MATCHING}" ]]; then
-            sed -i "/^${LINE_UNESCAPED}$/d" "${TODO_FILE}"
+            remove_todo ${LINE_UNESCAPED}
         fi
     fi
-    list_todos
+    get_todos
 fi
