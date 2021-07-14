@@ -1,5 +1,6 @@
 #!/bin/bash
 TODO_FILE=~/.rofi_todos
+DONE_FILE=~/.rofi_todos_done
 
 if [[ ! -a "${TODO_FILE}" ]]; then
     touch "${TODO_FILE}"
@@ -10,6 +11,7 @@ function add_todo() {
 }
 
 function remove_todo() {
+    echo "${*}" >> "${DONE_FILE}"
     sed -i "/^${*}$/d" "${TODO_FILE}"
 }
 
@@ -33,3 +35,4 @@ else
     fi
     get_todos
 fi
+
