@@ -45,3 +45,13 @@ Use up/down arrows or start typing to select the TODO you want to mark as done, 
 
 
  **Note:**  todos will be saved to a text file located at `~/.rofi_todos`.
+
+### Save a copy of completed TODOs
+
+To save a copy of your completed TODO items, specify `DONE_FILE`, e.g.:
+
+**~/.profile**
+```
+export DONE_FILE=~/.rofi_todos_done
+```
+
