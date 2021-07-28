@@ -10,6 +10,9 @@ function add_todo() {
 }
 
 function remove_todo() {
+    if [[ ! -z "$DONE_FILE" ]]; then
+    	echo "${*}" >> "${DONE_FILE}"
+    fi
     sed -i "/^${*}$/d" "${TODO_FILE}"
 }
 
