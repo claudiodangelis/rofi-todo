@@ -44,7 +44,22 @@ To search through todos just start typing
 Use up/down arrows or start typing to select the TODO you want to mark as done, then press Enter.
 
 
- **Note:**  todos will be saved to a text file located at `~/.rofi_todos`.
+## Change save file
+
+To change to location of the save file, and also the file which will be searched for the todos you
+can set the environment variable `TODO_FILE`:
+
+```
+export TODO_FILE=~/.other_todo_file
+```
+
+or in a direct shell execution:
+
+```
+$ TODO_FILE=~/.other_todo_file rofi -modi TODO:/path/to/rofi-todo/rofi-todo.sh -show TODO
+```
+
+ **Note:**  By default todos will be saved to a text file located at `~/.rofi_todos`.
 
 ### Save a copy of completed TODOs
 

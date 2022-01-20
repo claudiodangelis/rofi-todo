@@ -1,5 +1,8 @@
 #!/bin/bash
-TODO_FILE=~/.rofi_todos
+# Set default todo file
+if [ -z ${TODO_FILE+x} ]; then
+    TODO_FILE=~/.rofi_todos
+fi
 
 if [[ ! -a "${TODO_FILE}" ]]; then
     touch "${TODO_FILE}"
